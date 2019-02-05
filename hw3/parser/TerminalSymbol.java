@@ -4,6 +4,8 @@
 */
 package parser;
 
+import java.util.Arrays;
+
 public enum TerminalSymbol implements Symbol{
     
     VARIABLE {
@@ -12,10 +14,12 @@ public enum TerminalSymbol implements Symbol{
 	    
 	    if(input.get(0).getType() == TerminalSymbol.VARIABLE){
 		//parsing success
-		
-	    }else{
-		return ParseState.FAILURE;
+		Token leafNode = input.get(0);
+		List <Token> remainderList = Arrays.asList(input).remove(0);
+		return ParseState.build(leafNode, remainderList);
 	    }
+	    //else
+	    return ParseState.FAILURE;	    
 	}
 	
     },
@@ -24,12 +28,15 @@ public enum TerminalSymbol implements Symbol{
 	@Override
 	ParseState parse(List<Token> input){
 
-	    if(input.get(0).getType() == TerminalSymbol.VARIABLE){
+	    if(input.get(0).getType() == TerminalSymbol.PLUS){
 		//parsing success
-		
-	    }else{
-		return ParseState.FAILURE;
+		Token leafNode = input.get(0);
+		List <Token> remainderList = Arrays.asList(input).remove(0);
+		return ParseState.build(leafNode, remainderList);
+
 	    }
+	    //else
+	    return ParseState.FAILURE;	    
 	}
 	
     },
@@ -38,12 +45,15 @@ public enum TerminalSymbol implements Symbol{
 	@Override
 	ParseState parse(List<Token> input){
 
-	    if(input.get(0).getType() == TerminalSymbol.VARIABLE){
+	    if(input.get(0).getType() == TerminalSymbol.MINUS){
 		//parsing success
-		
-	    }else{
-		return ParseState.FAILURE;
+		Token leafNode = input.get(0);
+		List <Token> remainderList = Arrays.asList(input).remove(0);
+		return ParseState.build(leafNode, remainderList);
+
 	    }
+	    //else
+	    return ParseState.FAILURE;
 	}
 	
     },
@@ -52,12 +62,15 @@ public enum TerminalSymbol implements Symbol{
 	@Override
 	ParseState parse(List<Token> input){
 
-	    if(input.get(0).getType() == TerminalSymbol.VARIABLE){
+	    if(input.get(0).getType() == TerminalSymbol.TIMES){
 		//parsing success
-		
-	    }else{
-		return ParseState.FAILURE;
+		Token leafNode = input.get(0);
+		List <Token> remainderList = Arrays.asList(input).remove(0);
+		return ParseState.build(leafNode, remainderList);
+
 	    }
+	    //else
+	    return ParseState.FAILURE;
 	}
 	
     },
@@ -66,12 +79,15 @@ public enum TerminalSymbol implements Symbol{
 	@Override
 	ParseState parse(List<Token> input){
 
-	    if(input.get(0).getType() == TerminalSymbol.VARIABLE){
+	    if(input.get(0).getType() == TerminalSymbol.DIVIDE){
 		//parsing success
-		
-	    }else{
-		return ParseState.FAILURE;
+		Token leafNode = input.get(0);
+		List <Token> remainderList = Arrays.asList(input).remove(0);
+		return ParseState.build(leafNode, remainderList);
+
 	    }
+	    //else
+	    return ParseState.FAILURE;	    
 	}
 	
     },
@@ -80,12 +96,15 @@ public enum TerminalSymbol implements Symbol{
 	@Override
 	ParseState parse(List<Token> input){
 
-	    if(input.get(0).getType() == TerminalSymbol.VARIABLE){
+	    if(input.get(0).getType() == TerminalSymbol.OPEN){
 		//parsing success
-		
-	    }else{
-		return ParseState.FAILURE;
+		Token leafNode = input.get(0);
+		List <Token> remainderList = Arrays.asList(input).remove(0);
+		return ParseState.build(leafNode, remainderList);
+
 	    }
+	    //else
+	    return ParseState.FAILURE;	    
 	}
 	
     },
@@ -94,12 +113,15 @@ public enum TerminalSymbol implements Symbol{
 	@Override
 	ParseState parse(List<Token> input){
 
-	    if(input.get(0).getType() == TerminalSymbol.VARIABLE){
+	    if(input.get(0).getType() == TerminalSymbol.CLOSE){
 		//parsing success
-		
-	    }else{
-		return ParseState.FAILURE;
+		Token leafNode = input.get(0);
+		List <Token> remainderList = Arrays.asList(input).remove(0);
+		return ParseState.build(leafNode, remainderList);
+
 	    }
+	    //else
+	    return ParseState.FAILURE;	    
 	}
 	
     }
