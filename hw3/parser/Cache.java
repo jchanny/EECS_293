@@ -17,10 +17,12 @@ final class Cache<T,V>{
           Constructor function for creating new object of type T
       @return value stored in cache, or new object created if not in cache*/  
     V get(T key, Function<? super T, ? extends V> constructor){
-	if(key == null)
+	if(key == null){
 	    throw new NullPointerException("Key is null.");
-	if(constructor == null)
+	}
+	if(constructor == null){
 	    throw new NullPointerException("Constructor is null.");
+	}
 
 	if(cache.containsKey(key)){
 	    return cache.get(key);

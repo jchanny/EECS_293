@@ -9,6 +9,8 @@ public final class Connector extends AbstractToken{
     TerminalSymbol type;
 
     private static Cache<TerminalSymbol, Connector> cache;
+
+    private static final Map<TerminalSymbol, String> validConnectors;
     
     private Connector(TerminalSymbol type){
 	this.type = type;
@@ -18,29 +20,31 @@ public final class Connector extends AbstractToken{
 	return type;
     }
 
+    //private method that returns a Map of valid Connector types
+    private static Map<TerminalSymbol, String> getValidConnectorTypes(TerminalSymbol type){
+	if(validConnectors.size() == 0){
+	    validConnectors.put(TerminalSymbol.PLUS, "+");
+	    validConnectors.put(TerminalSymbol.MINUS, "-");
+	    validConnectors.put(TerminalSymbol.TIMES, "*");
+	    validConnectors.put(TerminalSymbol.DIVIDE, "/");
+	    validConnectors.put(TerminalSymbol.OPEN, "(");
+	    validConnectors.put(TerminalSymbol.CLOSE, ")");
+	}
+	
+	return validConnectors;
+    }
+    
     /*creates new Connector of type if doesn't already exist in cache*/
     public static final Connector build(TerminalSymbol type){
 	if(type == null)
 	    throw new NullPointerException("Type is null.");
-	if(type != TerminalSymbol.PLUS || type != TerminalSymbol.MINUS || type != TerminalSymbol.TIMES || type != TerminalSymbol.DIVIDE || type != TerminalSymbol.OPEN || type != TerminalSymbol.CLOSE)
+	if(!getValidConnectorTypes().containsKey(type))
 	    throw new IllegalArgumentException("Invalid connector type.");
-
+	
 	return cache.get(type, (t) -> new Connector(t));
     }
 
     public String toString(){
-	if(type == TerminalSymbol.PLUS)
-	    return "+";
-	if(type == TerminalSymbol.MINUS)
-	    return "-";
-	if(type == TerminalSymbol.TIMES)
-	    return "*";
-	if(type == TerminalSymbol.DIVIDE)
-	    return "/";
-	if(type == TerminalSymbol.OPEN)
-	    return "(";
-	if(type == TerminalSymbol.CLOSE)
-	    return ")";
-	return "";
+	return getValidConnectorTypes().get(getType());
     }
 }

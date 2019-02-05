@@ -24,6 +24,7 @@ public final class Variable extends AbstractToken{
 	if(representation == null){
 	    throw new NullPointerException("Representation is null.");
 	}
+
 	return cache.get(representation, (t) -> new Variable(t));
     }
 
