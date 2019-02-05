@@ -4,13 +4,15 @@
   Connector class*/
 package parser;
 
+import java.util.HashMap;
+
 public final class Connector extends AbstractToken{
 
     TerminalSymbol type;
 
     private static Cache<TerminalSymbol, Connector> cache;
 
-    private static final Map<TerminalSymbol, String> validConnectors;
+    private static final HashMap<TerminalSymbol, String> validConnectors = new HashMap<TerminalSymbol, String>();
     
     private Connector(TerminalSymbol type){
 	this.type = type;
