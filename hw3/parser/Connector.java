@@ -12,7 +12,7 @@ public final class Connector extends AbstractToken{
 
     private static Cache<TerminalSymbol, Connector> cache;
 
-    private static final HashMap<TerminalSymbol, String> validConnectors = new HashMap<TerminalSymbol, String>();
+    private static HashMap<TerminalSymbol, String> validConnectors = new HashMap<TerminalSymbol, String>();
     
     private Connector(TerminalSymbol type){
 	this.type = type;
