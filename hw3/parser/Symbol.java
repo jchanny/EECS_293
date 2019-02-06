@@ -3,6 +3,8 @@
   Interface for parsing input into a node*/
 package parser;
 
+import java.util.List;
+
 interface Symbol{
     
     ParseState parse(List<Token> input);
