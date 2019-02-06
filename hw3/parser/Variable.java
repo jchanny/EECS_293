@@ -10,29 +10,29 @@ public final class Variable extends AbstractToken{
 
     //cache to prevent creating redundant variables
     private static Cache<String, Variable> cache;
-    
+
     private Variable(String representation){
-	this.representation = representation;
+        this.representation = representation;
     }
-    
+
     public TerminalSymbol getType(){
-	return TerminalSymbol.VARIABLE;
+        return TerminalSymbol.VARIABLE;
     }
 
     /*checks if variable already exists in cache, otherwise, builds + returns new var*/
     public static final Variable build(String representation){
-	if(representation == null){
-	    throw new NullPointerException("Representation is null.");
-	}
+        if(representation == null){
+            throw new NullPointerException("Representation is null.");
+        }
 
-	return cache.get(representation, (t) -> new Variable(t));
+        return cache.get(representation, (t) -> new Variable(t));
     }
 
     public String toString(){
-	return representation;
+        return representation;
     }
-    
+
     public final String getRepresentation(){
-	return representation;
+        return representation;
     }
 }

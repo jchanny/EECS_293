@@ -43,11 +43,11 @@ final class SymbolSequence{
 			throw new NullPointerException("Input is null.");
 
 		List<Token> remainderList = input;
-		List<Token> children = new ArrayList<Token>();
+		List<Node> children = new ArrayList<Node>();
 
 		for(Symbol sym : production){
 			ParseState result = sym.parse(remainderList);
-			if(!result.isSuccess())
+			if(!result.successful())
 				return ParseState.FAILURE;
 			//else
 			children.add(result.getNode());

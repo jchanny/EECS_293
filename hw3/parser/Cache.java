@@ -10,27 +10,27 @@ import java.util.HashMap;
 import java.util.function.Function;
 
 final class Cache<T,V>{
-    private Map<T,V> cache = new HashMap<T,V>();
+	private Map<T,V> cache = new HashMap<T,V>();
 
-    /*@param T key : key for value
+	/*@param T key : key for value
       @param Function<? super T, ? extends V> constructor>: 
           Constructor function for creating new object of type T
-      @return value stored in cache, or new object created if not in cache*/  
-    V get(T key, Function<? super T, ? extends V> constructor){
-	if(key == null){
-	    throw new NullPointerException("Key is null.");
-	}
-	if(constructor == null){
-	    throw new NullPointerException("Constructor is null.");
-	}
+      @return value stored in cache, or new object created if not in cache*/
+	V get(T key, Function<? super T, ? extends V> constructor){
+		if(key == null){
+			throw new NullPointerException("Key is null.");
+		}
+		if(constructor == null){
+			throw new NullPointerException("Constructor is null.");
+		}
 
-	if(cache.containsKey(key)){
-	    return cache.get(key);
+		if(cache.containsKey(key)){
+			return cache.get(key);
+		}
+		else{
+			V obj = constructor.apply(key);
+			cache.put(key, obj);
+			return obj;
+		}
 	}
-	else{
-	    V obj = constructor.apply(key);
-	    cache.put(key, obj);
-	    return obj;
-	}
-    }
 }

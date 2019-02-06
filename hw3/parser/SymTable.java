@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 class SymTable {
-    
+
     private static HashMap<NonTerminalSymbol, List<SymbolSequence>> symSequencesList = new HashMap<NonTerminalSymbol, List<SymbolSequence>>();
 
     //creates symSequencesList if unpopulated, else returns it
@@ -38,7 +38,7 @@ class SymTable {
             List<Symbol> term = new ArrayList<Symbol>();
             term.add(NonTerminalSymbol.UNARY); term.add(NonTerminalSymbol.TERM_TAIL);
             List<SymbolSequence> termList = new ArrayList<SymbolSequence>();
-            termList.add(SymbolSequence.build(term);
+            termList.add(SymbolSequence.build(term));
             symSequencesList.put(NonTerminalSymbol.TERM, termList);
 
             //NonTerminalSymbol.TERM_TAIL symbol sequences

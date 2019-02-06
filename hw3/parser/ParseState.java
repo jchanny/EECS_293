@@ -11,12 +11,12 @@ import java.util.*;
  * @author wildm
  */
 final class ParseState {
-            
+
     private final boolean success;
     private final Node node;
     private final List<Token> remainder;
     final static ParseState FAILURE = new ParseState(null, null);
-    
+
     //constructor
     private ParseState(Node nod, List<Token> leftOver){
         if (nod == null || leftOver == null)
@@ -26,17 +26,17 @@ final class ParseState {
         node = nod;
         remainder = leftOver;
     }
-    
+
     //getter returns value
     public boolean successful(){
         return success;
     }
-    
+
     //getter returns value
     public Node getNode(){
         return node;
     }
-    
+
     //getter return copy of remainder
     public List<Token> getRemainder(){
         if (!hasNoRemainder()){
@@ -45,11 +45,10 @@ final class ParseState {
         }
         return null;
     }
-    
-    public final static ParseState FAILURE(){
-        return new ParseState(false, null, null);
-    }
-    
+
+    public final static ParseState FAILURE = new ParseState(false, null, null);
+
+
     public final boolean hasNoRemainder(){
         if (remainder == null)
             return true;
@@ -66,4 +65,6 @@ final class ParseState {
             return new ParseState(node, list);
         }
     }
+
+   
 }

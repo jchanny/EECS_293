@@ -15,7 +15,7 @@ public enum TerminalSymbol implements Symbol{
 
 			if(input.get(0).getType() == TerminalSymbol.VARIABLE){
 				//parsing success
-				Token leafNode = input.get(0);
+				Node leafNode = LeafNode.build(input.get(0));
 				List <Token> remainderList = Arrays.asList(input).remove(0);
 				return ParseState.build(leafNode, remainderList);
 			}
@@ -31,7 +31,7 @@ public enum TerminalSymbol implements Symbol{
 
 			if(input.get(0).getType() == TerminalSymbol.PLUS){
 				//parsing success
-				Token leafNode = input.get(0);
+				Node leafNode = LeafNode.build(input.get(0));
 				List <Token> remainderList = Arrays.asList(input).remove(0);
 				return ParseState.build(leafNode, remainderList);
 
@@ -48,7 +48,7 @@ public enum TerminalSymbol implements Symbol{
 
 			if(input.get(0).getType() == TerminalSymbol.MINUS){
 				//parsing success
-				Token leafNode = input.get(0);
+				Node leafNode = LeafNode.build(input.get(0));
 				List <Token> remainderList = Arrays.asList(input).remove(0);
 				return ParseState.build(leafNode, remainderList);
 
@@ -65,7 +65,7 @@ public enum TerminalSymbol implements Symbol{
 
 			if(input.get(0).getType() == TerminalSymbol.TIMES){
 				//parsing success
-				Token leafNode = input.get(0);
+				Node leafNode = LeafNode.build(input.get(0));
 				List <Token> remainderList = Arrays.asList(input).remove(0);
 				return ParseState.build(leafNode, remainderList);
 
@@ -82,7 +82,7 @@ public enum TerminalSymbol implements Symbol{
 
 			if(input.get(0).getType() == TerminalSymbol.DIVIDE){
 				//parsing success
-				Token leafNode = input.get(0);
+				Node leafNode = LeafNode.build(input.get(0));
 				List <Token> remainderList = Arrays.asList(input).remove(0);
 				return ParseState.build(leafNode, remainderList);
 
@@ -99,7 +99,7 @@ public enum TerminalSymbol implements Symbol{
 
 			if(input.get(0).getType() == TerminalSymbol.OPEN){
 				//parsing success
-				Token leafNode = input.get(0);
+				Node leafNode = LeafNode.build(input.get(0));
 				List <Token> remainderList = Arrays.asList(input).remove(0);
 				return ParseState.build(leafNode, remainderList);
 
@@ -116,7 +116,7 @@ public enum TerminalSymbol implements Symbol{
 
 			if(input.get(0).getType() == TerminalSymbol.CLOSE){
 				//parsing success
-				Token leafNode = input.get(0);
+				Node leafNode = LeafNode.build(input.get(0));
 				List <Token> remainderList = Arrays.asList(input).remove(0);
 				return ParseState.build(leafNode, remainderList);
 

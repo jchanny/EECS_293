@@ -11,21 +11,22 @@ import java.util.*;
  * @author wildm
  */
 public final class InternalNode implements Node {
-    
+
     private final List<Node> children;
-    
+
     //constructor
     private InternalNode(List<Node> kids){
         children = new ArrayList<Node>(kids);
     }
-    
+
     //children getter
     public List<Node> getChildren(){
         List<Node> output = new ArrayList<Node>(children);
         return output;
     }
-    
-    public List<Token> toList(){
+
+    public List<Token> toList()
+    {
         List<Token> internal = new LinkedList<Token>();
         for (Node element: children){
             for(Token t : element.toList()){
@@ -48,11 +49,11 @@ public final class InternalNode implements Node {
         if (output != null){
             for (Node element: children)
                 output += "[" + (element.toString()) + "]";
-            
+
             return output;
         }
         //method was previously invoked
         else
             return output;
-    }    
+    }
 }
