@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="937fc065-523a-4959-a667-69eaa8735c10" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/HW3Test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InternalNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/InternalNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeafNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/LeafNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ParseState.java" beforeDir="false" afterPath="$PROJECT_DIR$/ParseState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-    </list>
+    <list default="true" id="937fc065-523a-4959-a667-69eaa8735c10" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +185,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549436071480" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549436076659" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
