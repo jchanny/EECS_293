@@ -50,11 +50,11 @@ final class SymbolSequence{
 			if(!result.isSuccess())
 				return ParseState.FAILURE;
 			//else
-			children.add(result);
+			children.add(result.getNode());
 			remainderList = result.getRemainder();
 		}
 
-		return ParseState.build(new InternalNode(children), remainderList);
+		return ParseState.build(InternalNode.build(children), remainderList);
 	}
 
 	public String toString(){

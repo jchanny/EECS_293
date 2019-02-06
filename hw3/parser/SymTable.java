@@ -1,3 +1,7 @@
+/*Jeremy Chan jsc126
+  Lennox Wildman law136
+  Helper class that contains a Map of different productions to NonTerminalSymbols
+ */
 package parser;
 
 import java.util.ArrayList;
@@ -8,6 +12,7 @@ class SymTable {
     
     private static HashMap<NonTerminalSymbol, List<SymbolSequence>> symSequencesList = new HashMap<NonTerminalSymbol, List<SymbolSequence>>();
 
+    //creates symSequencesList if unpopulated, else returns it
     public static List<SymbolSequence> getSymbolSequence(NonTerminalSymbol nonTerminal){
         if(symSequencesList.size() == 0){
 

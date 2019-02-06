@@ -1,6 +1,11 @@
+/*Jeremy Chan jsc126
+  Lennox Wildman law136
+  enum class that attempts to build parse tree from productions
+ */
 package parser;
 
 import java.util.List;
+import java.util.Optional;
 
 public enum NonTerminalSymbol implements Symbol{
 
@@ -18,6 +23,21 @@ public enum NonTerminalSymbol implements Symbol{
             }
 
             return ParseState.FAILURE;
+        }
+
+        public static final Optional<Node> parseInput(List<Token> input){
+            if(input == null)
+                throw new NullPointerException("Input is null.");
+
+            List<SymbolSequence> productions = SymTable.getSymbolSequence(EXPRESSION);
+            for(SymbolSequence prod : productions){
+                ParseState current = prod.match(input);
+                if(current.isSuccess() && current.hasNoRemainder()){
+                    return current.getNode();
+                }
+            }
+
+            return Optional.empty();
         }
     },
 

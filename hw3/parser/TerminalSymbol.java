@@ -1,6 +1,6 @@
 /*Jeremy Chan jsc126
   Lennox Wildman law136
-  enum class
+  enum class representing TerminalSymbol node builders
 */
 package parser;
 
