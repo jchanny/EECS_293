@@ -15,12 +15,15 @@ final class ParseState {
     private final boolean success;
     private final Node node;
     private final List<Token> remainder;
-    
+    final static ParseState FAILURE = new ParseState(null, null);
     
     //constructor
-    private ParseState(boolean complete, Node mod, List<Token> leftOver){
-        success = complete;
-        node = mod;
+    private ParseState(Node nod, List<Token> leftOver){
+        if (nod == null || leftOver == null)
+            success = false;
+        else
+            success = true;
+        node = nod;
         remainder = leftOver;
     }
     
@@ -53,5 +56,14 @@ final class ParseState {
         else
             return false;
     }
-    
+
+    public ParseState build(Node node, List<Token> remain){
+        if (node == null || remain == null){
+            throw new NullPointerException("Parameters must not be null");
+        }
+        else {
+            List<Token> list = new ArrayList<Token>(remain);
+            return new ParseState(node, list);
+        }
+    }
 }
