@@ -11,12 +11,14 @@ public enum NonTerminalSymbol implements Symbol{
 
     EXPRESSION, EXPRESSION_TAIL , TERM , TERM_TAIL , UNARY , FACTOR;
 
+    private static final Map<NonTerminalSymbol, Map<TerminalSymbol, SymbolSequence>> productions = ProductionsMap.getProductionsMap();
+    
     /*attempt to parse input tokens against list of productions*/
     public ParseState parse(List<Token> input){
 	if(input == null)
 	    throw new NullPointerException("Input is null.");
-
-	List<SymbolSequence> productions = SymTable.getSymbolSequence(this);
+	
+	//List<SymbolSequence> productions = SymTable.getSymbolSequence(this);
 	for(SymbolSequence prod : productions){
 	    ParseState current = prod.match(input);
 	    if(current.successful())
@@ -30,7 +32,7 @@ public enum NonTerminalSymbol implements Symbol{
         if(input == null)
             throw new NullPointerException("Input is null.");
 
-        List<SymbolSequence> productions = SymTable.getSymbolSequence(NonTerminalSymbol.EXPRESSION);
+	// List<SymbolSequence> productions = SymTable.getSymbolSequence(NonTerminalSymbol.EXPRESSION);
         for(SymbolSequence prod : productions){
             ParseState current = prod.match(input);
             if(current.successful() && current.hasNoRemainder()){
