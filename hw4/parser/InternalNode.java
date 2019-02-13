@@ -16,7 +16,7 @@ public final class InternalNode implements Node {
 
     //constructor
     private InternalNode(List<Node> children){
-        this.children = new ArrayList<Node>(children);
+        this.children = Collections.unmodifiableList(new ArrayList<Node>(children));
     }
 
     //children getter
