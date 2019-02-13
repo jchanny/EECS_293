@@ -24,12 +24,9 @@ public final class LeafNode implements Node {
         return token;
     }
 
-    public static LeafNode build(Token t)
-    {
-        if (t != null)
-            return new LeafNode(t);
-        else
-            throw new NullPointerException();
+    public static LeafNode build(Token t){
+        Objects.requireNonNull(t, "Cannont Build with null node");            
+        return new LeafNode(t);
     }
     
     public List<Node> getChildren(){
@@ -41,13 +38,11 @@ public final class LeafNode implements Node {
     }
     
     
-    public String toString()
-    {
+    public String toString(){
         return  token.toString();
     }
 
-    public List<Token> toList()
-    {
+    public List<Token> toList(){
         List<Token> leaf = new LinkedList<Token>();
         leaf.add(token);
         return leaf;
