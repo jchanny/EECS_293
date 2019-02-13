@@ -11,53 +11,51 @@ import java.util.Map;
 
 public enum NonTerminalSymbol implements Symbol{
 
-    EXPRESSION, EXPRESSION_TAIL , TERM , TERM_TAIL , UNARY , FACTOR;
+	EXPRESSION, EXPRESSION_TAIL , TERM , TERM_TAIL , UNARY , FACTOR;
 
-    private static final Map<NonTerminalSymbol, Map<TerminalSymbol, SymbolSequence>> productions = ProductionsMap.getProductionsMap();
-    
-    /*attempt to parse input tokens against list of productions*/
-    public ParseState parse(List<Token> input){
-	if(input == null)
-	    throw new NullPointerException("Input is null.");
+	private static final Map<NonTerminalSymbol, Map<TerminalSymbol, SymbolSequence>> productions = ProductionsMap.getProductionsMap();
 
-	TerminalSymbol lookAhead;
-	
-	if(input.size() == 0)
-	    lookAhead = null;
-	else
-	    lookAhead = input.get(0).getType();
+	/*attempt to parse input tokens against list of productions*/
+	public ParseState parse(List<Token> input){
+		Objects.requireNonNull(input, "Input is null.");
 
-	SymbolSequence production = productions.get(this).get(lookAhead);
-	
-	if(production == null)
-	    return ParseState.FAILURE;
-	
-	ParseState current = production.match(input);
-	return current;
-    }
+		TerminalSymbol lookAhead;
 
-      public static final Optional<Node> parseInput(List<Token> input){
-        if(input == null)
-            throw new NullPointerException("Input is null.");
+		if(input.size() == 0)
+			lookAhead = null;
+		else
+			lookAhead = input.get(0).getType();
 
-	TerminalSymbol lookAhead;
+		SymbolSequence production = productions.get(this).get(lookAhead);
 
-	if(input.size() == 0)
-	    lookAhead = null;
-	else
-	    lookAhead = input.get(0).getType();
+		if(production == null)
+			return ParseState.FAILURE;
 
-	SymbolSequence production = productions.get(NonTerminalSymbol.EXPRESSION).get(lookAhead);
+		ParseState current = production.match(input);
+		return current;
+	}
 
-	if(production == null)
-	    return ParseState.FAILURE;
+	public static final Optional<Node> parseInput(List<Token> input){
+		Objects.requireNonNull(input,"Input is null.");
 
-	ParseState current = production.match(input);
-	
-	if(current.hasNoRemainder())
-	    return Optional.of(current.getNode());
-      
-        return Optional.empty();
-    }
+		TerminalSymbol lookAhead;
+
+		if(input.size() == 0)
+			lookAhead = null;
+		else
+			lookAhead = input.get(0).getType();
+
+		SymbolSequence production = productions.get(NonTerminalSymbol.EXPRESSION).get(lookAhead);
+
+		if(production == null)
+			return ParseState.FAILURE;
+
+		ParseState current = production.match(input);
+
+		if(current.hasNoRemainder())
+			return Optional.of(current.getNode());
+
+		return Optional.empty();
+	}
 
 }    
