@@ -6,6 +6,8 @@ package parser;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum NonTerminalSymbol implements Symbol{
 
@@ -17,29 +19,44 @@ public enum NonTerminalSymbol implements Symbol{
     public ParseState parse(List<Token> input){
 	if(input == null)
 	    throw new NullPointerException("Input is null.");
-	
-	//List<SymbolSequence> productions = SymTable.getSymbolSequence(this);
-	for(SymbolSequence prod : productions){
-	    ParseState current = prod.match(input);
-	    if(current.successful())
-		return current;
-	}
 
-	return ParseState.FAILURE;
+	TerminalSymbol lookAhead;
+	
+	if(input.size() == 0)
+	    lookAhead = null;
+	else
+	    lookAhead = input.get(0).getType();
+
+	SymbolSequence production = productions.get(this).get(lookAhead);
+	
+	if(production == null)
+	    return ParseState.FAILURE;
+	
+	ParseState current = production.match(input);
+	return current;
     }
 
       public static final Optional<Node> parseInput(List<Token> input){
         if(input == null)
             throw new NullPointerException("Input is null.");
 
-	// List<SymbolSequence> productions = SymTable.getSymbolSequence(NonTerminalSymbol.EXPRESSION);
-        for(SymbolSequence prod : productions){
-            ParseState current = prod.match(input);
-            if(current.successful() && current.hasNoRemainder()){
-                return Optional.of(current.getNode());
-            }
-        }
+	TerminalSymbol lookAhead;
 
+	if(input.size() == 0)
+	    lookAhead = null;
+	else
+	    lookAhead = input.get(0).getType();
+
+	SymbolSequence production = productions.get(NonTerminalSymbol.EXPRESSION).get(lookAhead);
+
+	if(production == null)
+	    return ParseState.FAILURE;
+
+	ParseState current = production.match(input);
+	
+	if(current.hasNoRemainder())
+	    return Optional.of(current.getNode());
+      
         return Optional.empty();
     }
 
