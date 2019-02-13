@@ -15,14 +15,18 @@ public final class InternalNode implements Node {
     private final List<Node> children;
 
     //constructor
-    private InternalNode(List<Node> kids){
-        children = new ArrayList<Node>(kids);
+    private InternalNode(List<Node> children){
+        this.children = new ArrayList<Node>(children);
     }
 
     //children getter
     public List<Node> getChildren(){
         List<Node> output = new ArrayList<Node>(children);
         return output;
+    }
+    
+    public boolean isFruitful(){
+        return children != null;
     }
 
     public List<Token> toList()
@@ -37,12 +41,11 @@ public final class InternalNode implements Node {
     }
 
     public static InternalNode build(List<Node> attach){
-        if(attach == null){
-            throw new NullPointerException("Children nodes are null.");
-        }
+        Objects.requireNonNull(attach, "Children nodes are null.");
         return new InternalNode(attach);
     }
 
+    //string for toString output
     private String output = null;
     //String for toString method
     public String toString(){
@@ -55,5 +58,43 @@ public final class InternalNode implements Node {
         //method was previously invoked
         else
             return output;
+    }
+    
+    //nested class to simplify parse tree
+    public static class Builder{
+        
+        private List<Node> Children = new ArrayList<Node>();
+        
+        //method to add nodes to Children list
+        public boolean addChild(Node node){
+            Objects.requireNonNull(node, "Cannot add Null Node");
+            return Children.add(node); 
+        }
+        
+        //method to remove all childless nodes from children
+        public Builder simplify(){
+            for (Node child: Children){
+                if (!child.isFruitful()){
+                    child = null;
+                }
+            }
+            soloReformat(Children);
+            return this;
+        }
+        
+        //helper method
+        //if @param contains only 1 internalNode, replace with children of the internalNode
+        private void soloReformat(List<Node> children){
+            if (children.size() == 1 && children.get(0) instanceof InternalNode){
+                children = children.get(0).getChildren();
+            }
+        }
+        
+        //returns new internalNode with simplified list
+        public InternalNode build(){
+            simplify();
+            return new InternalNode(Children);
+        }
+        
     }
 }

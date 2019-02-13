@@ -32,11 +32,15 @@ public final class LeafNode implements Node {
             throw new NullPointerException();
     }
     
-    public String toString(){
-        return  token.toString();
+    public List<Node> getChildren(){
+        return null;
     }
     
-
+    public boolean isFruitful(){
+        return true;
+    }
+    
+    
     public String toString()
     {
         return  token.toString();

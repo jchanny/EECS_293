@@ -16,4 +16,8 @@ public interface Node {
     
     public String toString();
     
+    public List <Node> getChildren();
+    
+    public boolean isFruitful();
+    
 }
