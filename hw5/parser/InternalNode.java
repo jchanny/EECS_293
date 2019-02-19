@@ -26,7 +26,7 @@ public final class InternalNode implements Node {
     }
     
     public boolean isFruitful(){
-        return children != null;
+        return !children.isEmpty();
     }
 
     public List<Token> toList()
@@ -50,14 +50,15 @@ public final class InternalNode implements Node {
     //String for toString method
     public String toString(){
         if (output != null){
-            for (Node element: children)
+            for (Node element: children){
                 output += "[" + (element.toString()) + "]";
-
+            }
             return output;
         }
         //method was previously invoked
-        else
+        else{
             return output;
+        }
     }
     
     //always false since internal node cannot be operator

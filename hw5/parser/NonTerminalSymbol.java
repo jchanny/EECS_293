@@ -4,10 +4,7 @@
  */
 package parser;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public enum NonTerminalSymbol implements Symbol{
 
@@ -17,45 +14,52 @@ public enum NonTerminalSymbol implements Symbol{
 
 	/*attempt to parse input tokens against list of productions*/
 	public ParseState parse(List<Token> input){
-		Objects.requireNonNull(input, "Input is null.");
+            Objects.requireNonNull(input, "Input is null.");
 
-		TerminalSymbol lookAhead;
+            TerminalSymbol lookAhead;
 
-		if(input.size() == 0)
-			lookAhead = null;
-		else
-			lookAhead = input.get(0).getType();
+            if(input.size() == 0){
+                lookAhead = null;
+            }
+            else{
+                lookAhead = input.get(0).getType();
+            }
 
-		SymbolSequence production = productions.get(this).get(lookAhead);
+            SymbolSequence production = productions.get(this).get(lookAhead);
 
-		if(production == null)
-			return ParseState.FAILURE;
+            if(production == null){
+                return ParseState.FAILURE;
+            }
 
-		ParseState current = production.match(input);
-		return current;
+            ParseState current = production.match(input);
+            return current;
 	}
 
 	public static final Optional<Node> parseInput(List<Token> input){
-		Objects.requireNonNull(input,"Input is null.");
+            Objects.requireNonNull(input,"Input is null.");
 
-		TerminalSymbol lookAhead;
+            TerminalSymbol lookAhead;
 
-		if(input.size() == 0)
-			lookAhead = null;
-		else
-			lookAhead = input.get(0).getType();
+            if(input.size() == 0){
+                lookAhead = null;
+            }
+            else{
+                lookAhead = input.get(0).getType();
+            }
 
-		SymbolSequence production = productions.get(NonTerminalSymbol.EXPRESSION).get(lookAhead);
+            SymbolSequence production = productions.get(NonTerminalSymbol.EXPRESSION).get(lookAhead);
 
-		if(production == null)
-			return ParseState.FAILURE;
+            if(production == null){
+                return Optional.ofNullable(null);
+            }
 
-		ParseState current = production.match(input);
+            ParseState current = production.match(input);
 
-		if(current.hasNoRemainder())
-			return Optional.of(current.getNode());
+            if(current.hasNoRemainder()){
+                return Optional.of(current.getNode());
+            }
 
-		return Optional.empty();
+            return Optional.empty();
 	}
 
 }    
