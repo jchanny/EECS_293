@@ -26,16 +26,16 @@ final class SymbolSequence{
 
 	/*Build method that takes variable number of Sybmols*/
 	static final SymbolSequence build(Symbol ... symbols){
-		if(symbols == null){
-                    throw new NullPointerException("Input is null.");
-                }
+            if(symbols == null){
+                throw new NullPointerException("Input is null.");
+            }
 
-		List<Symbol> prod = new ArrayList<Symbol>();
-		for(Symbol sym : symbols){
-                    prod.add(sym);
-		}
+            List<Symbol> prod = new ArrayList<Symbol>();
+            for(Symbol sym : symbols){
+                prod.add(sym);
+            }
 
-		return new SymbolSequence(prod);
+            return new SymbolSequence(prod);
 	}
 
 	/*Builds a new ParseState from a list of Tokens*/

@@ -21,10 +21,10 @@ class ProductionsMap {
 
             //lookup table for NonTerminalSymbol.EXPRESSION_TAIL
             HashMap<TerminalSymbol, SymbolSequence> expTailMap = new HashMap<TerminalSymbol, SymbolSequence>();
-            expMap.put(TerminalSymbol.PLUS, SymbolSequence.build(TerminalSymbol.PLUS, NonTerminalSymbol.TERM, NonTerminalSymbol.EXPRESSION_TAIL));
-            expMap.put(TerminalSymbol.MINUS, SymbolSequence.build(TerminalSymbol.MINUS, NonTerminalSymbol.TERM, NonTerminalSymbol.EXPRESSION_TAIL));
-            expMap.put(null, SymbolSequence.EPSILON);
-            productions.put(NonTerminalSymbol.EXPRESSION_TAIL, expMap);
+            expTailMap.put(TerminalSymbol.PLUS, SymbolSequence.build(TerminalSymbol.PLUS, NonTerminalSymbol.TERM, NonTerminalSymbol.EXPRESSION_TAIL));
+            expTailMap.put(TerminalSymbol.MINUS, SymbolSequence.build(TerminalSymbol.MINUS, NonTerminalSymbol.TERM, NonTerminalSymbol.EXPRESSION_TAIL));
+            expTailMap.put(null, SymbolSequence.EPSILON);
+            productions.put(NonTerminalSymbol.EXPRESSION_TAIL, expTailMap);
 
             //lookup table for NonTerminalSymbol.TERM
             HashMap<TerminalSymbol, SymbolSequence> termMap = new HashMap<TerminalSymbol, SymbolSequence>();

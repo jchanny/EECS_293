@@ -9,7 +9,6 @@ public interface Token{
     /*return type of Token*/
     TerminalSymbol getType();
 
-
     /*Determines whether parameter argument matches token's type*/
     boolean matches(TerminalSymbol type);
     

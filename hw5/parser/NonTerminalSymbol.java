@@ -8,7 +8,7 @@ import java.util.*;
 
 public enum NonTerminalSymbol implements Symbol{
 
-	EXPRESSION, EXPRESSION_TAIL , TERM , TERM_TAIL , UNARY , FACTOR;
+	EXPRESSION , EXPRESSION_TAIL , TERM , TERM_TAIL , UNARY , FACTOR;
 
 	private static final Map<NonTerminalSymbol, Map<TerminalSymbol, SymbolSequence>> productions = ProductionsMap.getProductionsMap();
 
