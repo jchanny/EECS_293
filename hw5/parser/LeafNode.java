@@ -39,19 +39,7 @@ public final class LeafNode implements Node {
     
     //compare with each type of operator
     public boolean isOperator(){
-        if(token.matches(TerminalSymbol.TIMES)){
-            return true;
-        }
-        if(token.matches(TerminalSymbol.DIVIDE)){
-            return true;
-        }
-        if(token.matches(TerminalSymbol.PLUS)){
-            return true;
-        }
-        if(token.matches(TerminalSymbol.MINUS)){
-            return true;
-        }
-        return false;
+        return token.isOperator();
     }
     
     //always false since leaf nodes dont have children

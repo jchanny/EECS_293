@@ -7,6 +7,7 @@ package parser;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.function.Function;
 
 final class Cache<T,V>{
@@ -17,12 +18,10 @@ final class Cache<T,V>{
       Constructor function for creating new object of type T
   @return value stored in cache, or new object created if not in cache*/
     V get(T key, Function<? super T, ? extends V> constructor){
-        if(key == null){
-            throw new NullPointerException("Key is null.");
-        }
-        if(constructor == null){
-            throw new NullPointerException("Constructor is null.");
-        }
+
+        //null testing
+        Objects.requireNonNull(key,"Key is null.");
+        Objects.requireNonNull(constructor,"Constructor is null.");
 
         if(cache.containsKey(key)){
             return cache.get(key);
