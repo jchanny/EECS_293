@@ -79,7 +79,7 @@ public final class InternalNode implements Node {
 
     //test if first child of node is operator
     public boolean isOperatorLed(){
-        return this.firstChild().isOperator();
+        return children.get(0).isOperator();
     }
 
     //return first child of current node
