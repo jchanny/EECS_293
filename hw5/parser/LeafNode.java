@@ -43,7 +43,7 @@ public final class LeafNode implements Node {
     }
     
     //always false since leaf nodes dont have children
-    public boolean isOperatorLed(){
+    public boolean isStartedByOperator(){
         return false;
     }
     

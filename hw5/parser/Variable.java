@@ -35,4 +35,5 @@ public final class Variable extends AbstractToken{
     public final String getRepresentation(){
         return representation;
     }
+
 }

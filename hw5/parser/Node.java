@@ -22,7 +22,7 @@ public interface Node {
     
     public boolean isOperator();
     
-    public boolean isOperatorLed();
+    public boolean isStartedByOperator();
     
     public Optional<Node> firstChild();
     

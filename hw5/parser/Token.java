@@ -11,5 +11,6 @@ public interface Token{
 
     /*Determines whether parameter argument matches token's type*/
     boolean matches(TerminalSymbol type);
-    
+
+    boolean isOperator();
 }

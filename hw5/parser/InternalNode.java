@@ -21,8 +21,13 @@ public final class InternalNode implements Node {
 
     //children getter
     public List<Node> getChildren(){
-        List<Node> output = new ArrayList<Node>(children);
-        return output;
+	List<Node> list = new ArrayList<Node>();
+	
+	for(Node child : children){
+	    list.add(child);
+	}
+
+	return list;
     }
     
     public boolean isFruitful(){
@@ -42,14 +47,20 @@ public final class InternalNode implements Node {
 
     public static InternalNode build(List<Node> attach){
         Objects.requireNonNull(attach, "Children nodes are null.");
-        return new InternalNode(attach);
+	Builder simplifier = new Builder();
+
+	for(int i = 0 ; i < attach.size() ; i++){
+	    simplifier.addChild(attach.get(i));
+	}
+	
+        return simplifier.build;
     }
 
     //string for toString output
     private String output = null;
     //String for toString method
     public String toString(){
-        if (output != null){
+        if (output == null){
             for (Node element: children){
                 output += "[" + (element.toString()) + "]";
             }
@@ -67,7 +78,7 @@ public final class InternalNode implements Node {
     }
     
     //test if first child of node is operator
-    public boolean isOperatorLed(){
+    public boolean isStartedByOperator(){
         return children.get(0).isOperator();
     }
     
@@ -85,32 +96,47 @@ public final class InternalNode implements Node {
     //nested class to simplify parse tree
     public static class Builder{
         
-        private List<Node> Children = new ArrayList<Node>();
+        private List<Node> children = new ArrayList<Node>();
         
         //method to add nodes to Children list
         public boolean addChild(Node node){
             Objects.requireNonNull(node, "Cannot add Null Node");
-            return Children.add(node); 
+            return children.add(node); 
         }
         
         //method to remove all childless nodes from children
         public Builder simplify(){
-            for (Node child: Children){
-                if (!child.isFruitful()){
-                    child = null;
-                }
-            }
-            soloReformat(Children);
+	    List<Node> simplified = new ArrayList<Node>();
+
+	    
+	    for(Node child : children){
+		if(child.isFruitful()){
+		    simplified.add(child);
+		}
+	    }
+
+	    for(Node node : simplified){
+		if(shouldReplaceWithChildren(node)){
+		    node = node.getChildren();
+		}
+	    }
+	    
             return this;
         }
-        
-        //helper method
-        //if @param contains only 1 internalNode, replace with children of the internalNode
-        private void soloReformat(List<Node> children){
-            if (children.size() == 1 && children.get(0) instanceof InternalNode){
-                children = children.get(0).getChildren();
-            }
-        }
+
+	//helper method that returns whether InternalNode should be
+	//replaced with its children
+	private static boolean shouldReplaceWithChildren(Node node){
+	    if(node.getChildren().size() < 2){
+		return false;
+	    }
+
+	    if(node.isStartedByOperator() && !node.getChildren.get(0).isOperator()){
+		return true;
+	    }
+
+	    return false;
+	}
         
         //returns new internalNode with simplified list
         public InternalNode build(){
