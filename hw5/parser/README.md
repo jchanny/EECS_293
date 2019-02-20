@@ -1,2 +1,2 @@
 Lennox Wildman (law136): Node+InternalNode+LeafNode
-Jeremy Chan (jsc126): NonTerminalSymbol+ProductionsMap
+Jeremy Chan (jsc126): InternalNode (simplify) + token + commandlineInterface
