@@ -3,10 +3,121 @@
 \begin{flushleft}
 Jeremy Chan jsc126\\
 Colby Saxton cas264\\
-HW #6\\
+HW 6\\
 EECS 293\\
 February 27, 2019\newline
 
-\begin{center} HW #6 \end{center}
+\textbf{Class Gone}\\
 \end{flushleft}
+
+\begin{paragraph}
+\indent board: The initial board of the game\\
+
+\indent \textbf{blackPebblesLeft(board):}\\
+\indent	-This routine checks if there are any black pebbles remaining on the board after the iterated list of moves occurs. It will return true if there are remaining black pebbles, false if not.\\
+\indent	-input: a board\\
+\indent	-Precondition: For this algorithm to work, the input board must be the board that has already completed all replacements from black to white \\
+\indent	-output: Whether or not there are any black pebbles remaining on the board\\
+\linebreak
+\indent\indent 1.For all the possible x-y coordinate pairs on the board:\\
+\indent\indent\indent 2.Check to see if there is a pebble on each coordinate using the pebbleOnCoordinates routine for each coordinates\\
+\indent\indent\indent\indent   3.If there is a pebble on the location:\\
+\indent\indent\indent\indent\indent 4. check to see if the pebble is black, if it is:\\
+\indent\indent\indent\indent\indent\indent 5.Then return that there is a black pebble\\
+\indent\indent\indent\indent\indent 6. if the pebble is not black:\\
+\indent\indent\indent\indent\indent\indent 7.Then continue checking all pebbles\\
+\indent\indent\indent\indent 8. End if\\
+\indent\indent 9. End for\\
+\indent\indent 10. After checking all the pebbles, there were no black pebbles, then return that there are no black pebbles\\
+\linebreak
+
+\indent \textbf{applyReplacementRules(board):}\\
+\indent -Function applies appropriate replacement rules to black pebbles and returns the number of iterations replacement rules were applied\\
+\indent -input: a board\\
+\indent -Precondition: An input board that hasn't had replacement rules applied to it yet must be passed in\\
+\indent -Output: how many iterations of replacement rules were applied; board will also be modified to have all replacement rules applied\\
+\indent -$O(n)$ runtime complexity\\
+\linebreak
+\indent\indent 1. Initialize iterationCount to 0\\
+\indent\indent 2. Initialize list whitePebbleLocations to equal locations of all white pebbles\\
+\indent\indent 3. Initialize exploreQueue to equal whitePebbleLocations\\
+\indent\indent 4. Initialize exploreNextQueue to be empty\\
+\indent\indent 5. While exploreQueue is not empty:\\
+\indent\indent\indent 6. dequeue a pebble from exploreQueue\\
+\indent\indent\indent 7. For this white pebble, if adjacent pebbles are black:\\
+\indent\indent\indent\indent 8. Change adjacent pebbles to black\\
+\indent\indent\indent\indent 9. Add adjacent pebbles to exploreNextQueue\\
+\indent\indent\indent 10. End if\\
+\indent\indent\indent 11. If exploreQueue is empty:\\
+\indent\indent\indent\indent 12. set exploreQueue to equal discoverNextList\\
+\indent\indent\indent\indent 13. Increment iterationCount\\
+\indent\indent\indent 14. End if\\
+\indent\indent 15. End while\\
+\indent\indent 16. Return iterationCount\\
+
+\indent\textbf{replaceBlackPebbles(board):}\\
+\indent - Function replaces black pebbles and outputs number of replacement iterations and whether there are still black pebbles remaining on board after replacement operations.\\
+\indent - input: a game board of arbitrary height and width\\
+\indent -Precondition: A game board that has just been set up and no players have played their turn yet\\
+\indent -Output: Number of replacement iterations performed, and whether there are still black pebbles on the board\\
+\indent -$O(n)$ runtime complexity\\
+\linebreak
+\indent\indent 1. iterationCount = applyReplacementRules(board)\\
+\indent\indent 2. output iterationCount\\
+\indent\indent 3. output blackPebblesLeft(board)\\
+\indent\indent 4. return the modified board\\
+\end{paragraph}
+
+\begin{flushleft}
+\textbf{Class Board}\\
+\end{flushleft}
+
+\begin{paragraph}
+\indent height = The number of pebbles that can vertically fit on the board\\
+\indent width = The number of pebbles that can horizontally fit on the board\\
+\indent pebbleMap = A map of pebbles where the key of a pebble is its unique integer value from the getPairing method\\
+\linebreak
+\indent \textbf{pebbleOnCoordinates(x, y)}\\
+\indent	-input: the x and y coordinates of the location to check if there is a pebble on\\
+\indent	-output: Whether or not there is a pebble located at this coordinate\\
+\linebreak
+\indent\indent 1. take the input x and y coordinates and put them into the getPairing routine to get the unique integer value for it\\
+\indent\indent 2. Check to see if the unique integer value found above is a key existing in pebbleMap\\
+\indent\indent 3. If there is a pebble in the map for this unique integer value:\\
+\indent\indent\indent 4. Then return that there is a pebble on these coordinates\\
+\indent\indent 5. If there is not a pebble in the map for this unique integer value:\\
+\indent\indent\indent 6.Then return that there is not a pebble on these coordinates\\
+\indent\indent 7. End if\\
+\linebreak
+\indent \textbf{getPairing(x, y)}\\
+\indent - This routine returns a unique integer value from a x and y coordinate\\
+\indent - input: an x and y coordinate\\
+\indent - output: a value that represents a unique non-negative integer value made from the thisX and thisY values\\
+\linebreak
+\indent\indent	1. Let thisX represent the x coordinate\\
+\indent\indent	2. Let thisY represent the y coordinate\\
+\indent\indent  3. return a value that represents a unique non-negative integer value made from the thisX and thisY values\\
+\end{paragraph}
+
+\begin{paragraph}
+\begin{flushleft}
+\textbf{Class Pebble}\\
+\end{flushleft}
+\indent	color = The color of the pebble\\
+\indent	x = the x-coordinate location of the pebble on the board\\
+\indent	y = the y coordinate location of the pebble on the board\\
+\linebreak
+\indent	This routine returns the color of this pebble\\
+\indent	\textbf{getColor()}\\
+\indent	\indent	return color\\
+\linebreak
+\indent	This routine returns the x coordinate of this pebble\\
+\indent	\textbf{getXCoordinate()}\\
+\indent	\indent	return x\\
+\linebreak
+\indent	This routine returns the y coordiate of this pebble\\
+\indent	\textbf{getYCoordinate()}\\
+\indent \indent output~ y
+\end{paragraph}  
+
 \end{document}
