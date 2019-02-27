@@ -19,7 +19,7 @@ public enum TerminalSymbol implements Symbol{
             return ParseState.build(leafNode, remainderList);
         }
         //else
-        return ParseState.FAILURE;	
+        return ParseState.FAILURE;
     }
 
 }

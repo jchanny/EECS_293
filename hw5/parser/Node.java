@@ -11,21 +11,21 @@ import java.util.*;
  * @author wildm
  */
 public interface Node {
-    
+
     public List <Token> toList();
-    
+
     public String toString();
-    
+
     public List <Node> getChildren();
-    
+
     public boolean isFruitful();
-    
+
     public boolean isOperator();
-    
+
     public boolean isStartedByOperator();
-    
+
     public Optional<Node> firstChild();
-    
+
     public boolean isSingleLeafParent();
-    
+
 }

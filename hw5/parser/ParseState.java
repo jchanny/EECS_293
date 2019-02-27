@@ -67,5 +67,5 @@ final class ParseState {
         }
     }
 
-   
+
 }

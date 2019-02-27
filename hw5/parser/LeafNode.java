@@ -25,38 +25,38 @@ public final class LeafNode implements Node {
     }
 
     public static LeafNode build(Token t){
-        Objects.requireNonNull(t, "Cannont Build with null node");            
+        Objects.requireNonNull(t, "Cannont Build with null node");
         return new LeafNode(t);
     }
-    
+
     public List<Node> getChildren(){
         return null;
     }
-    
+
     public boolean isFruitful(){
         return true;
     }
-    
+
     //compare with each type of operator
     public boolean isOperator(){
         return token.isOperator();
     }
-    
+
     //always false since leaf nodes dont have children
     public boolean isStartedByOperator(){
         return false;
     }
-    
+
     //returns empty optional since leaf nodes dont have children
     public Optional<Node> firstChild(){
         return Optional.ofNullable(null);
     }
-    
+
     //always false since leaf nodes dont have children
     public boolean isSingleLeafParent(){
         return false;
     }
-    
+
     public String toString(){
         return  token.toString();
     }
